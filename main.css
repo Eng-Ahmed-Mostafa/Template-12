@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.phone {
+    background-color: blueviolet;
+}
+.phone .text {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(59, 59, 59);
+    padding: 10px;
+}
+.phone .text input {
+    outline: none;
+    border: none;
+    font-size: 30px;
+    color: white;
+    background-color: inherit;
+    padding: 10px;
+}
+.phone .buttons {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    background-color: rgb(59, 59, 59);
+}
+.phone .buttons button {
+    padding: 30px 25px;
+    font-size: 26px;
+    cursor: pointer;
+}
+.phone .buttons button.gray {
+    position: relative;
+    background-color: darkgray;
+}
+.phone .buttons button.gray span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(0%,-50%) rotate(30deg);
+}
+.phone .buttons button.num {
+    background-color: lightgray;
+}
+.phone .buttons button.num.zero {
+    grid-column: 1/span 2;
+    text-align: start;
+    padding-left: 40px;
+}
+.phone .buttons button.orange {
+    background-color: darkorange;
+    color: white;
+}
