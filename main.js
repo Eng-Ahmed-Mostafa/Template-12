@@ -6,6 +6,7 @@ let buttons = document.querySelectorAll("button:not(.out)");
 let arrayOfSign;
 let arrayOfNumbers;
 let result;
+console.log(3%2)
 buttons.forEach(e => {
     e.addEventListener("click", function() {
         textInput.value += e.innerHTML;
@@ -39,6 +40,12 @@ function postFix(size) {
         } else {
             contentArrayOfNumbers.push(arrayOfSign[i])
         }
+        if(arrayOfSign.length - 1 == i || ((arrayOfSign[i + 1] == '+' || arrayOfSign[i + 1] == '-' ) && (arrayOfSign[i] == '+' || arrayOfSign[i] == '-' ))) {
+            for(let j = contentArrayOfSign.length - 1;j >= 0;j--) {
+                contentArrayOfNumbers.push(contentArrayOfSign[j]);
+                contentArrayOfSign.pop();
+            }
+        }
     }
     equalButton.onclick = function() {
         console.log(contentArrayOfNumbers)
@@ -47,11 +54,11 @@ function postFix(size) {
 }
 function arithmetic(contentArrayOfNumbers) {
         for(let i = 0 ; i < contentArrayOfNumbers.length && contentArrayOfNumbers.length > 1; i++) {
-            if(contentArrayOfNumbers[i] == "+" || contentArrayOfNumbers[i] == "-" || contentArrayOfNumbers[i] == "÷" || contentArrayOfNumbers[i] == "×") {
+            if(contentArrayOfNumbers[i] == "+" || contentArrayOfNumbers[i] == "-" || contentArrayOfNumbers[i] == "÷" || contentArrayOfNumbers[i] == "×" || contentArrayOfNumbers[i] == "%") {
                 let partResult = 0;
                 switch (contentArrayOfNumbers[i]) {
                     case '+':
-                        partResult = parseFloat(contentArrayOfNumbers[i-1]) + parseFloat(contentArrayOfNumbers[i - 2]);
+                        partResult = parseFloat(contentArrayOfNumbers[i-2]) + parseFloat(contentArrayOfNumbers[i - 1]);
                         break;
                     case '-':
                         partResult = parseFloat(contentArrayOfNumbers[i-2]) - parseFloat(contentArrayOfNumbers[i - 1]);
@@ -60,7 +67,10 @@ function arithmetic(contentArrayOfNumbers) {
                         partResult = parseFloat(contentArrayOfNumbers[i-2]) / parseFloat(contentArrayOfNumbers[i - 1]);
                         break;
                     case '×':
-                        partResult = parseFloat(contentArrayOfNumbers[i-1]) * parseFloat(contentArrayOfNumbers[i - 2]);
+                        partResult = parseFloat(contentArrayOfNumbers[i-2]) * parseFloat(contentArrayOfNumbers[i - 1]);
+                        break;
+                    case '%':
+                        partResult = parseFloat(contentArrayOfNumbers[i-2]) % parseFloat(contentArrayOfNumbers[i - 1]);
                         break;
                 }
                 console.log(`partResult : ${partResult}`)
